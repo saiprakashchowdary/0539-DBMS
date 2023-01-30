@@ -1,0 +1,44 @@
+mysql> SELECT * FROM user $$
++----------+-----------+--------+
+| userid   | password  | name   |
++----------+-----------+--------+
+| scott123 | 123@sco   | Scott  |
+| ferp6734 | dloeiu@&3 | Palash |
+| diana094 | ku$j@23   | Diana  |
++----------+-----------+--------+
+3 rows in set (0.00 sec)
+mysql> CREATE PROCEDURE job_data()
+> SELECT * FROM JOBS; $$
+Query OK, 0 rows affected (0.00 sec)
+mysql>DELIMITER $$
+mysql>CREATE PROCEDURE my_procedure_Local_Variables()
+->BEGIN    
+->DECLARE a INT DEFAULT 10;   
+Query OK, 0 rows affected (0.03 sec)
+mysql>DECLARE b, c INT;       
+mysql>SET a = a + 100;   
+mysql>SET b = 2;   
+mysql>SET c = a + b;    
+mysql>BEGIN            
+->DECLARE c INT;             
+mysql>SET c = 5;              
+mysql>SELECT a, b, c;   
+mysql>END;    
+mysql>SELECT a, b, c;
+mysql>END$$
+Query OK, 0 rows affected (0.03 sec)
+mysql> CALL my_procedure_Local_Variables();
++------+------+------+
+| a    | b    | c    |
++------+------+------+
+|  110 |    2 |    5 |
++------+------+------+
+1 row in set (0.00 sec)
+
++------+------+------+
+| a    | b    | c    |
++------+------+------+
+|  110 |    2 |  112 |
++------+------+------+
+1 row in set (0.01 sec)
+Query OK, 0 rows affected (0.03 sec)
