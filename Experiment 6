@@ -1,0 +1,68 @@
+mysql> use students
+Database changed
+mysql> select * from students where regno between 335 and 337;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
++-------+---------+--------+------------+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from students where regno between 335 and 245;
+Empty set (0.00 sec)
+
+mysql> select * from mark where marks between 90 and 98;
++-------+---------+-------+
+| regno | name    | marks |
++-------+---------+-------+
+|   335 | sravani |    90 |
+|   245 | chandu  |    95 |
+|   337 | swarna  |    98 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select count(name) from students;
++-------------+
+| count(name) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name), regno from students
+    -> group by regno having count(name)>0;
++-------------+-------+
+| count(name) | regno |
++-------------+-------+
+|           1 |   335 |
+|           1 |   245 |
++-------------+-------+
+2 rows in set (0.00 sec)
+
+mysql>  select avg(marks) from mark
+    -> ;
++------------+
+| avg(marks) |
++------------+
+|    94.3333 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from mark
+    -> ;
++------------+
+| sum(marks) |
++------------+
+|        283 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from students where gender in ('M');
++-------+--------+--------+------------+----------+------------+
+| regno | name   | gender | dob        | mobileno | department |
++-------+--------+--------+------------+----------+------------+
+|   245 | chandu | M      | 2006-05-06 | 77298039 | IT         |
++-------+--------+--------+------------+----------+------------+
+1 row in set (0.00 sec)
+
+mysql>
