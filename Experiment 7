@@ -1,0 +1,69 @@
+mysql> use students;
+Database changed
+mysql> select name,gender,dob from students order by regno;
++---------+--------+------------+
+| name    | gender | dob        |
++---------+--------+------------+
+| chandu  | M      | 2006-05-06 |
+| sravani | F      | 2005-06-08 |
++---------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select name,gender,dob from students order by name;
++---------+--------+------------+
+| name    | gender | dob        |
++---------+--------+------------+
+| chandu  | M      | 2006-05-06 |
+| sravani | F      | 2005-06-08 |
++---------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from mark;
++-------+---------+-------+
+| regno | name    | marks |
++-------+---------+-------+
+|   335 | sravani |    90 |
+|   245 | chandu  |    95 |
+|   337 | swarna  |    98 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select name,marks from mark order by marks;
++---------+-------+
+| name    | marks |
++---------+-------+
+| sravani |    90 |
+| chandu  |    95 |
+| swarna  |    98 |
++---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select name,marks from mark order by marks DESC;
++---------+-------+
+| name    | marks |
++---------+-------+
+| swarna  |    98 |
+| chandu  |    95 |
+| sravani |    90 |
++---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select count(name) from students;
++-------------+
+| count(name) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name), regno from students
+    -> group by regno having count(name)>0;
++-------------+-------+
+| count(name) | regno |
++-------------+-------+
+|           1 |   335 |
+|           1 |   245 |
++-------------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
