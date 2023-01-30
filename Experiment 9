@@ -1,0 +1,73 @@
+mysql>  use courses;
+Database changed
+mysql> select * from courses;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   234 | sravani |          34 |              15 |       1 |
+|   567 | vivek   |          37 |              17 |       0 |
+|   334 | chandu  |          25 |              18 |       0 |
+|   225 | hansika |          38 |              20 |       1 |
++-------+---------+-------------+-----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table details(regno int(3),doj date);
+ERROR 1050 (42S01): Table 'details' already exists
+mysql> create table details(regno int(3),doj date);
+ERROR 1050 (42S01): Table 'details' already exists
+mysql> create table detailss(regno int(3),doj date);
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> desc detailss;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| regno | int  | YES  |     | NULL    |       |
+| doj   | date | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into detailss values('333', '2023-07-09');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into detailss values('445','2025-05-06');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into detailss values('238','2026-06-03');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc detailss;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| regno | int  | YES  |     | NULL    |       |
+| doj   | date | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from detailss;
++-------+------------+
+| regno | doj        |
++-------+------------+
+|   333 | 2023-07-09 |
+|   445 | 2025-05-06 |
+|   238 | 2026-06-03 |
++-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select detailss.regno,courses.name,detailss.doj from detailss
+    -> inner join courses on detailss.regno=courses.regno;
+Empty set (0.00 sec)
+
+mysql> select * from detailss;
++-------+------------+
+| regno | doj        |
++-------+------------+
+|   333 | 2023-07-09 |
+|   445 | 2025-05-06 |
+|   238 | 2026-06-03 |
++-------+------------+
+3 rows in set (0.01 sec)
+mysql> select detailss.regno,detailss.doj from detailss
+    -> inner join courses on detailss.regno= courses.regno;
+Empty set (0.00 sec)
