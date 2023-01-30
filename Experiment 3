@@ -1,0 +1,51 @@
+use students;
+Database changed
+mysql> SELECT * from students;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
++-------+---------+--------+------------+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into students values('245','vivek','M','2008-07-06','CSE');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into students value('245','vivek','M','2008-07-06','63076542','CSE');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students values('233','chandu','M','2006-05-06','IT');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into students value('245','chandu','M','2006-05-06','77298039','IT');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students value('345','hansika','M','2003-04-07','83078624','CSE');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students value('224','swarna','F','1981-05-06','64759937','ECE');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * from students;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
+|   245 | vivek   | M      | 2008-07-06 | 63076542 | CSE        |
+|   245 | chandu  | M      | 2006-05-06 | 77298039 | IT         |
+|   345 | hansika | M      | 2003-04-07 | 83078624 | CSE        |
+|   224 | swarna  | F      | 1981-05-06 | 64759937 | ECE        |
++-------+---------+--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select name,gender,department from students;
++---------+--------+------------+
+| name    | gender | department |
++---------+--------+------------+
+| sravani | F      | EEE        |
+| vivek   | M      | CSE        |
+| chandu  | M      | IT         |
+| hansika | M      | CSE        |
+| swarna  | F      | ECE        |
++---------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
