@@ -1,0 +1,56 @@
+mysql> use table1;
+Database changed
+mysql>  create table table1(Id int (10), Name varchar(30), Class varchar(20) );
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> insert into table1 values(4,"sravani","BCA");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into table1 values(5,"hansika","MCA";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into table1 values (5,"hansika","MCA");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into table1 values (8,"tejaswini","IIT");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into table1 values (9,"varshitha","MA");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into table1 values (7,"likitha","NIT");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delimiter //
+mysql> create procedure list_name (INOUT name_list varchar(4000))
+    ->  begin
+    -> declare is_done INTEGER DEFAULT 0;
+    -> declare s_name varchar(100) DEFAULT "";
+    ->  declare stud_cursor CURSOR FOR
+    -> select name FROM table1;
+    -> declare continue handler for not found set is_done = 1;
+    -> open stud_cursor;
+    -> get_list : LOOP
+    -> fetch stud_cursor into s_name;
+    ->  if is_done = 1 then
+    -> leave get_list;
+    -> end if;
+    -> set name_list =  CONCAT(s_name, ", ", name_list);
+    -> end loop get_list;
+    ->  close stud_cursor;
+    -> end//
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>  SET @name_list ="";
+    -> CALL list_name(@name_list);
+    -> SELECT @name_list;
+    -> end//
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
++---------------------------------------------------+
+| @name_list                                        |
++---------------------------------------------------+
+| likitha, varshitha, tejaswini, hansika, sravani,  |
++---------------------------------------------------+
+1 row in set (0.01 sec)
