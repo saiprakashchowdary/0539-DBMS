@@ -1,0 +1,59 @@
+mysql> use students;
+Database changed
+mysql> SELECT * from students;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
+|   245 | vivek   | M      | 2008-07-06 | 63076542 | CSE        |
+|   245 | chandu  | M      | 2006-05-06 | 77298039 | IT         |
+|   345 | hansika | M      | 2003-04-07 | 83078624 | CSE        |
+|   224 | swarna  | F      | 1981-05-06 | 64759937 | ECE        |
++-------+---------+--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update students set name='swarna' where department='CSE';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from students;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
+|   245 | swarna  | M      | 2008-07-06 | 63076542 | CSE        |
+|   245 | chandu  | M      | 2006-05-06 | 77298039 | IT         |
+|   345 | swarna  | M      | 2003-04-07 | 83078624 | CSE        |
+|   224 | swarna  | F      | 1981-05-06 | 64759937 | ECE        |
++-------+---------+--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update students set department='CSE' where name='swarna';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 3  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
+|   245 | swarna  | M      | 2008-07-06 | 63076542 | CSE        |
+|   245 | chandu  | M      | 2006-05-06 | 77298039 | IT         |
+|   345 | swarna  | M      | 2003-04-07 | 83078624 | CSE        |
+|   224 | swarna  | F      | 1981-05-06 | 64759937 | CSE        |
++-------+---------+--------+------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from students where name='swarna';
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> select * from students;
++-------+---------+--------+------------+----------+------------+
+| regno | name    | gender | dob        | mobileno | department |
++-------+---------+--------+------------+----------+------------+
+|   335 | sravani | F      | 2005-06-08 | 93023456 | EEE        |
+|   245 | chandu  | M      | 2006-05-06 | 77298039 | IT         |
++-------+---------+--------+------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql>
