@@ -1,0 +1,12 @@
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| faculty           |
+| mark              |
+| myguests          |
+| student           |
++-------------------+
+4 rows in set (0.01 sec)
