@@ -1,0 +1,102 @@
+mysql> use facultys;
+Database changed
+mysql> alter table facultys
+    -> ADD PRIMARY KEY(facno);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc facultys;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facno   | varchar(4)  | NO   | PRI | NULL    |       |
+| facname | varchar(15) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| dob     | date        | YES  |     | NULL    |       |
+| doj     | date        | YES  |     | NULL    |       |
+| subject | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * from facultys
+    -> ADD CHECK(gender = 'M' or 'F');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD CHECK(gender = 'M' or 'F')' at line 2
+mysql> SELECT * from facultys;
+Empty set (0.00 sec)
+
+mysql> SELECT * from facultys;
++-------+---------+--------+------------+------------+---------+
+| facno | facname | gender | dob        | doj        | subject |
++-------+---------+--------+------------+------------+---------+
+| b     | sravani | F      | 1991-07-06 | 2002-06-05 |   31000 |
++-------+---------+--------+------------+------------+---------+
+1 row in set (0.00 sec)
+1 row in set (0.00 sec)
+
+mysql> desc facultys;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facno   | varchar(4)  | NO   | PRI | NULL    |       |
+| facname | varchar(15) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| dob     | date        | YES  |     | NULL    |       |
+| doj     | date        | YES  |     | NULL    |       |
+| subject | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> create table course(facno varchar(4),facname varchar(15),gender varchar(1),dob date,salary int(6),subject varchar(15));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> desc course;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facno   | varchar(4)  | YES  |     | NULL    |       |
+| facname | varchar(15) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| dob     | date        | YES  |     | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| subject | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table course add foreign key(facmo) references faculty(facno);
+ERROR 1072 (42000): Key column 'facmo' doesn't exist in table
+mysql> alter table course add foreign key(facno) references faculty(facno);
+ERROR 1824 (HY000): Failed to open the referenced table 'faculty'
+mysql> alter table course add foreign key(facno) references facultys(facno);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facno   | varchar(4)  | YES  | MUL | NULL    |       |
+| facname | varchar(15) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| dob     | date        | YES  |     | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| subject | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table course add unique(salary);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facno   | varchar(4)  | YES  | MUL | NULL    |       |
+| facname | varchar(15) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| dob     | date        | YES  |     | NULL    |       |
+| salary  | int         | YES  | UNI | NULL    |       |
+| subject | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
