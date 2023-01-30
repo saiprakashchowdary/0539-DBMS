@@ -1,0 +1,14 @@
+mysql> use customer;
+Database changed
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++--------------------+
+| Tables_in_customer |
++--------------------+
+| data               |
+| details            |
+| javalab            |
+| orderdetails       |
++--------------------+
+4 rows in set (0.00 sec)
