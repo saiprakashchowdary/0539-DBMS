@@ -1,0 +1,46 @@
+mysql> use student_age;
+Database changed
+mysql>  Create table Student_age(age INT, Name Varchar(35));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER //
+mysql> Create Trigger before_inser_studentage BEFORE INSERT ON student_age FOR EACH ROW
+    -> BEGIN
+    -> IF NEW.age < 0 THEN SET NEW.age = 0;
+    -> END IF;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO Student_age(age, Name) values(40,'sravani');
+    -> INSERT INTO Student_age values(40,'sravani');
+    -> INSERT INTO Student_age values(age,name) values(-10,'chandu');
+    -> Select * from Student_age;
+    -> end//
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(-10,'chandu');
+Select * from Student_age;
+end' at line 1
+mysql> INSERT INTO Student_age(age, Name) values(40,'sravani');
+    ->  INSERT INTO Student_age values(40,'sravani');
+    ->  INSERT INTO Student_age(age, Name) values(-10, 'Harshit');
+    -> Select * from Student_age;
+    -> end//
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
+Query OK, 1 row affected (0.04 sec)
+
++------+---------+
+| age  | Name    |
++------+---------+
+|   40 | sravani |
+|   40 | sravani |
+|   40 | sravani |
+|   40 | sravani |
+|    0 | Harshit |
++------+---------+
+5 rows in set (0.04 sec)
