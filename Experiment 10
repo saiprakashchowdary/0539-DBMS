@@ -1,0 +1,68 @@
+mysql> use courses;
+Database changed
+mysql> select * from courses;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   234 | sravani |          34 |              15 |       1 |
+|   567 | vivek   |          37 |              17 |       0 |
+|   334 | chandu  |          25 |              18 |       0 |
+|   225 | hansika |          38 |              20 |       1 |
++-------+---------+-------------+-----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from detailss;
++-------+------------+
+| regno | doj        |
++-------+------------+
+|   333 | 2023-07-09 |
+|   445 | 2025-05-06 |
+|   238 | 2026-06-03 |
++-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from details;
++-------+------------+
+| regno | doj        |
++-------+------------+
+|   336 | 2022-09-07 |
+|   444 | 2023-07-05 |
++-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create view studentcourse as select name,completedcourse from courses order by name;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from studentcourse;
++---------+-----------------+
+| name    | completedcourse |
++---------+-----------------+
+| chandu  |              18 |
+| hansika |              20 |
+| sravani |              15 |
+| vivek   |              17 |
++---------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> create index studentid on course(regno);
+ERROR 1146 (42S02): Table 'courses.course' doesn't exist
+mysql> create index studentid on course(regno);
+ERROR 1146 (42S02): Table 'courses.course' doesn't exist
+mysql> create index studentid on coursee(regno);
+ERROR 1146 (42S02): Table 'courses.coursee' doesn't exist
+mysql> create index studentid on courses(regno);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from courses;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   234 | sravani |          34 |              15 |       1 |
+|   567 | vivek   |          37 |              17 |       0 |
+|   334 | chandu  |          25 |              18 |       0 |
+|   225 | hansika |          38 |              20 |       1 |
++-------+---------+-------------+-----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql>
